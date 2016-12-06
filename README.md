@@ -40,7 +40,7 @@ Da finestra di comando esguire il Server:
 cd Documents\NetBeansProjects\Java-Sockets-Server\src
 java ServerTestoMultiThreaded 1234
 ```
-Da nuova finestra di comando esguire il ```primo``` Client
+Da nuova finestra di comando eseguire il ```primo``` Client
 ```
 cd Documents\NetBeansProjects\Java-Sockets-Client\src
 java client-Testo localhost 1234
@@ -51,23 +51,14 @@ cd Documents\NetBeansProjects\Java-Sockets-Client\src
 java client-Testo localhost 1234
 ```
 ## Diventa un collaboratore
-Questa e' la lista di nuove funzioni da aggiungere al progetto:
+Questa e' la lista della nuova funzione da aggiungere al progetto:
 ```
-1. Di seguito alla nuova connessione di un Client con il Server,
-   richiedere il "NickName" e utilizzarlo per la visualizzazione del messaggio 
-   (invece della porta del Client come da progetto iniziale)
+1. Group Chat 
+1.1. Possibilita' di iniziare una o piu' "group chat" fornendo per ogni chat il "Soggetto della discussione"
+1.2. Possibilita' di invitare uno o piu' utenti conessi a entrare nella "goup chat"
+1.3. Possibilita' di uscire dalla "group chat"
 ```
-```
-2. Aggiungere la possibilita' di mandare un comando (es. ListaUtenti) al Server 
-   che di conseguenza restituisca la lista di tutti i Clients connessi.
-```
-```
-3. Group Chat 
-3.1. Possibilita' di iniziare una o piu' "group chat" fornendo per ogni chat il "Soggetto della discussione"
-3.2. Possibilita' di invitare uno o piu' utenti conessi a entrare nella "goup chat"
-3.3. Possibilita' di uscire dalla "group chat"
-```
-Mentre le modifiche descritte dai primi due punti risulteranno in una fusione (merge), le modifiche descritti dai punti 3 dovranno far parte di un nuovo progetto che parte da quello originario (fork).
+La modifica descritta dovrà far parte di un nuovo progetto che parte da quello originario (fork).
  
 ## Licenza
 opensource nel modo piu' completo del termine :) senza alcuna restrizione!
