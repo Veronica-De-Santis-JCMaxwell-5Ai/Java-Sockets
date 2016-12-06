@@ -13,7 +13,7 @@ import java.io.*;
 class SocketWorker implements Runnable {
   private Socket client;
   // VARIABILE PER CONTROLLARE IL PRIMO STREAM DI DATI
-  private boolean firstAccess = true;
+  private boolean isNick = false;
   private String nick = "";
 
     //Constructor: inizializza le variabili
@@ -35,13 +35,28 @@ class SocketWorker implements Runnable {
           System.exit(-1);
         }
         String line = "";
-        if(firstAccess)
+      
+        while(!isNick)
         {
             try{
                 // LEGGO IL NICKNAME
                 line = in.readLine();
-                nick = line;
-                firstAccess = false;
+                boolean trov = false;
+                int i = 0;
+                while(trov==false && i < ServerTestoMultiThreaded.listaSocket.size())
+                {
+                    if(ServerTestoMultiThreaded.listaSocket.get(i).getNick().equals(line))
+                    {
+                        trov = true;
+                    } else i++;
+                }
+                if(!trov)
+                {
+                    nick = line;
+                    isNick = true;
+                } else {
+                    out.println("Nickname gia' esistente, inseriscine un altro");
+                }
             } catch(IOException e) { System.out.println("Lettura da socket fallito");
                                      System.exit(-1); }
         }
