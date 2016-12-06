@@ -49,11 +49,18 @@ class SocketWorker implements Runnable {
         while(line != null){
           try{
             line = in.readLine();
-            //Manda lo stesso messaggio appena ricevuto con in aggiunta il "nome" del client
-            out.println("Server-->" + nick + ">> " + line);
-            //scrivi messaggio ricevuto su terminale
-            System.out.println(nick + ">> " + line);
-           } catch (IOException e) {
+            if(line.equals("Nickname"){
+              for(int i = 0; i < ServerTestoMultiThreaded.listaSocket.size(); i++)
+                {
+                    out.println("Client "+(i+1)+": "+ServerTestoMultiThreaded.listaSocket.get(i).getNick());
+                }
+            } else {
+              //Manda lo stesso messaggio appena ricevuto con in aggiunta il "nome" del client
+              out.println("Server-->" + nick + ">> " + line);
+              //scrivi messaggio ricevuto su terminale
+              System.out.println(nick + ">> " + line);
+            }
+          } catch (IOException e) {
             System.out.println("lettura da socket fallito");
             System.exit(-1);
            }
