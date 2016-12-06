@@ -12,7 +12,7 @@ import java.net.*;
 import java.io.*;
 
 public class ServerTestoMultiThreaded {
-
+    static List<SocketWorker> listaSocket = new ArrayList();
     public static void main(String[] args) {
 
         if (args.length != 1) {
@@ -32,6 +32,7 @@ public class ServerTestoMultiThreaded {
                 try {
                     //server.accept returns a client connection
                     w = new SocketWorker(server.accept());
+                    listaSocket.add(w);
                     Thread t = new Thread(w);
                     t.start();
                 } catch (IOException e) {
