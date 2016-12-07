@@ -34,6 +34,11 @@ dove:
 ```
 NOTA: posso collegarmi al server con quanti Clients desidero, sia su stesso computer che da terminali su computer diversi, purchè abbiano diversi nickname
 
+Visualizzare elenco utenti connessi da Client:
+```
+<Nickname>
+```
+
 ### Esempio usando stesso computer sia per eseguire Server che multipli Clients
 Da finestra di comando esguire il Server:
 ```
