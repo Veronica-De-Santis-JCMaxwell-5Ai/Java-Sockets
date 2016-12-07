@@ -35,7 +35,7 @@ class SocketWorker implements Runnable {
           System.exit(-1);
         }
         String line = "";
-      
+        //FINCHE' IL NICKNAME NON SI RIPETE 
         while(!isNick)
         {
             try{
@@ -43,18 +43,24 @@ class SocketWorker implements Runnable {
                 line = in.readLine();
                 boolean trov = false;
                 int i = 0;
+                //FINCHE' NON SCORRO TUTTA LA LISTA O NON TROVO IL NICKNAME
                 while(trov==false && i < ServerTestoMultiThreaded.listaSocket.size())
                 {
+                    //CONFRONTA IL NICKNAME INSERITO CON LA POSIZIONE i NELLA LISTA 
+                    //SE LO TROVA IMPOSTA LA VARIABILE A TRUE, ALTRIMENTI AUMENTA IL CONTATORE
                     if(ServerTestoMultiThreaded.listaSocket.get(i).getNick().equals(line))
                     {
                         trov = true;
                     } else i++;
                 }
+                //SE NON VIENE TROVATO IL NICKNAME 
                 if(!trov)
                 {
+                    //IMPOSTA LE VARIABILI
                     nick = line;
                     isNick = true;
                 } else {
+                    //ALTRIMENTI STAMPA SUL CLIENT
                     out.println("Nickname gia' esistente, inseriscine un altro");
                 }
             } catch(IOException e) { System.out.println("Lettura da socket fallito");
@@ -64,6 +70,7 @@ class SocketWorker implements Runnable {
         while(line != null){
           try{
             line = in.readLine();
+            //SCRIVENDO NICKNAME SUL CLIENT, STAMPA TUTTA LA LISTA
             if(line.equals("Nickname"){
               for(int i = 0; i < ServerTestoMultiThreaded.listaSocket.size(); i++)
                 {
