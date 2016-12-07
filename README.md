@@ -32,7 +32,7 @@ java clientTesto <host> <server port>
 dove:
 * host puo' essere espresso sia in forma numerica (es. 127.0.0.1) che in forma alfanumerica (es. www.nomeSito.com)
 ```
-NOTA: posso collegarmi al server con quanti Clients desidero, sia su stesso computer che da terminali su computer diversi, purchè abbiano diversi nickname
+**Nota**: posso collegarmi al server con quanti Clients desidero, sia su stesso computer che da terminali su computer diversi, purchè abbiano diversi nickname
 
 Visualizzare elenco utenti connessi da Client:
 ```
