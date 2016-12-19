@@ -70,7 +70,7 @@ Questa e' la lista delle funzionalità del progetto:
 ```
 1. Comunicazione di più Client con un Server
 2. Richiesta di un nickname al Client
-2.1 Il nickname DEVE essere univoco
+  2.1 Il nickname DEVE essere univoco
 3. Con il comando <Nickname> il Client può richiedere una lista dei nickname dei Client connessi al Server
 ```
 La prossima modifica consiste nell'inserimento di una Group chat, trovate il nuovo progetto sulla pagina Misael-Micciche-JCMaxwell-5Ai.
