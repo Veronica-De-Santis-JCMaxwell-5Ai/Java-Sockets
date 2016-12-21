@@ -18,7 +18,9 @@ E' suggerito anche l'utilizzo di netBeans IDE (Integrated Development Envirormen
 ### Installazione
 Scarica i files del progetto cliccando "Clone/Download"
 * in NetBeans crea due nuovi progetti "Java-Sockets-Client" e "Java-Sockets-Server"
-## Compilazione
+* estrai i files e spostali nella sub-directory "src" dei rispettivi progetti (es. Documents\NetBeansProjects\Java-Sockets-Server\src)
+
+### Compilazione
 Per prima cosa compiliamo tutte le classi del progetto, sulla finestra del Server scriviamo i comandi:
 ```
 cd Documents\NetBeansProjects\Java-Socket-Server\src>javac SocketWorker.java
@@ -29,7 +31,6 @@ Sulla finestra del Client scriviamo invece:
 cd Documents\NetBeansProjects\Java-Socket-Client\src>javac listener.java
 cd Documents\NetBeansProjects\Java-Socket-Client\src>javac ClientTesto.java
 ```
-* estrai i files e spostali nella sub-directory "src" dei rispettivi progetti (es. Documents\NetBeansProjects\Java-Sockets-Server\src)
 
 ## Uso
 Dal terminale del Server:
