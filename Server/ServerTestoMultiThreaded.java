@@ -10,6 +10,8 @@
  */
 import java.net.*;
 import java.io.*;
+// LIBRERIA PER USARE LA LISTA
+import java.util.*;
 
 public class ServerTestoMultiThreaded {
     //DICHIARAZIONE LISTA CONTENENTE IL NOME DEGLI UTENTI
