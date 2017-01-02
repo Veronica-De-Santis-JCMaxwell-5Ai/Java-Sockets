@@ -71,7 +71,7 @@ class SocketWorker implements Runnable {
           try{
             line = in.readLine();
             //SCRIVENDO NICKNAME SUL CLIENT, STAMPA TUTTA LA LISTA
-            if(line.equals("Nickname"){
+            if(line.equals("Nickname")){
               for(int i = 0; i < ServerTestoMultiThreaded.listaSocket.size(); i++)
                 {
                     out.println("Client "+(i+1)+": "+ServerTestoMultiThreaded.listaSocket.get(i).getNick());
