@@ -2,17 +2,16 @@
 # Java-Sockets
 Concetti e realizzazione di una semplice connessione Client/Server usando Sockets in Java
 ```
-Obitettivo del progetto: inviare linee di testo da un programma (Client)... -->
-                         --> ad un altro (Server) anche eventualmente remoto.
+Obitettivo del progetto: inviare linee di testo da un programma (Client)... --> ad un altro (Server) anche eventualmente remoto.
 ```
-**Nota:** Visiona le [Slides della lezione](https://docs.google.com/presentation/d/19vhath-GbtUO7ofpukJE4Opi16aTfrnurJ2lUizB0iE/edit?usp=sharing)
+
 ## Istruzioni
 Per replicare il progetto sul vostro computer personale. Potrete apportare modifiche ed eventualmente fonderle con il progetto principale, o in alcuni casi creare un progetto proprio.
 
 ### Prerequisiti
 Java SDK (Software Development Kit) - programma per la compilazione (javac) da codice in Java a ByteCode. L'installazione comprende anche Java JRE (Java Runtime Envirorment) che fornisce la Virtual Machine (VM) su cui far eseguire il ByteCode.
 ```
-E' suggerito anche l'utilizzo di netBeans IDE (Integrated Development Envirorment)
+E' suggerito anche l'utilizzo di NetBeans IDE (Integrated Development Envirorment)
 ```
 
 ### Installazione
@@ -30,6 +29,10 @@ Sulla finestra del Client scriviamo invece:
 ```
 cd Documents\NetBeansProjects\Java-Socket-Client\src>javac listener.java
 cd Documents\NetBeansProjects\Java-Socket-Client\src>javac ClientTesto.java
+```
+**Attenzione** Se la compilazione non funziona, potrebbe essere un problema d'impostazione delle variabili d'ambiente! Se è il vostro caso, seguite le istruzioni qui sotto:<br>
+```
+Su 'Prorietà del sistema' portarsi sul tab 'Avanzate'. Premere il pulsante 'Variabili d'ambiente..'. Sulla variabile d'ambiente Path copiare, (al fondo degli indirizzi già copiati), l'indirizzo in cui si trova la bin relavita alla vostra versione della jdk di java. L'indirizzo sul host su cui è stato eseguito e sviluppato il progetto è: **C:\Program Files\Java\jdk1.8.0_91\bin**
 ```
 
 ## Uso
