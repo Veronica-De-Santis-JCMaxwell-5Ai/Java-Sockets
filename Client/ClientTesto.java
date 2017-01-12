@@ -43,7 +43,7 @@ public class ClientTesto {
             Socket clientSocket = new Socket(address, portNumber);
 		
             // visualizza istruzioni
-            System.out.println("Client-Testo: usa Ctrl-C per terminare, ENTER per spedire la linea di testo.\n");
+            System.out.println("Client-Testo: usa EXIT per terminare, ENTER per spedire la linea di testo.\n");
 			
             // connessione concorrente al socket per ricevere i dati da Server
             listener l;
