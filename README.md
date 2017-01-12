@@ -2,7 +2,8 @@
 # Java-Sockets
 Concetti e realizzazione di una semplice connessione Client/Server usando Sockets in Java
 ```
-Obitettivo del progetto:<br>inviare linee di testo da un programma (Client)... --> ad un altro (Server) anche eventualmente remoto.
+Obitettivo del progetto:
+inviare linee di testo da un programma (Client)... --> ad un altro (Server) anche eventualmente remoto.
 ```
 
 ## Istruzioni
@@ -32,7 +33,9 @@ cd Documents\NetBeansProjects\Java-Socket-Client\src>javac ClientTesto.java
 ```
 **Attenzione** Se la compilazione non funziona, potrebbe essere un problema d'impostazione delle variabili d'ambiente! Se è il vostro caso, seguite le istruzioni qui sotto:<br>
 ```
-Su 'Prorietà del sistema' portarsi sul tab 'Avanzate'. Premere il pulsante 'Variabili d'ambiente..'. Sulla variabile d'ambiente Path copiare, (al fondo degli indirizzi già copiati), l'indirizzo in cui si trova la bin relavita alla vostra versione della jdk di java. L'indirizzo sul host su cui è stato eseguito e sviluppato il progetto è: **C:\Program Files\Java\jdk1.8.0_91\bin**
+Su 'Prorietà del sistema' portarsi sul tab 'Avanzate'. Premere il pulsante 'Variabili d'ambiente..'.
+Sulla variabile d'ambiente Path copiare, (al fondo degli indirizzi già copiati), l'indirizzo in cui si trova la bin relavita alla vostra versione della jdk di java.
+L'indirizzo sul host su cui è stato eseguito e sviluppato il progetto è: **C:\Program Files\Java\jdk1.8.0_91\bin**
 ```
 
 ## Uso
