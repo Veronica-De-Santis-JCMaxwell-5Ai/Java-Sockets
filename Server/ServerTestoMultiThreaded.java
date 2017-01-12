@@ -10,12 +10,11 @@
  */
 import java.net.*;
 import java.io.*;
-// LIBRERIA PER USARE LA LISTA
 import java.util.*;
 
 public class ServerTestoMultiThreaded {
     //DICHIARAZIONE LISTA CONTENENTE IL NOME DEGLI UTENTI
-    static List<SocketWorker> listaSocket = new ArrayList();
+    static List<String> listaClient = new ArrayList();
     public static void main(String[] args) {
         //SE LA STRINGA NON E' UNIVOCA 
         if (args.length != 1) {
@@ -37,8 +36,6 @@ public class ServerTestoMultiThreaded {
                 try {
                     //server.accept returns a client connection
                     w = new SocketWorker(server.accept());
-                    //AGGIUNGE L'OGGETTO ALLA LISTA
-                    listaSocket.add(w);
                     Thread t = new Thread(w);
                     t.start();
                 } catch (IOException e) {
