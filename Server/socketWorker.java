@@ -44,11 +44,11 @@ class SocketWorker implements Runnable {
                 boolean trov = false;
                 int i = 0;
                 //FINCHE' NON SCORRO TUTTA LA LISTA O NON TROVO IL NICKNAME
-                while(trov==false && i < ServerTestoMultiThreaded.listaSocket.size())
+                while(trov==false && i < ServerTestoMultiThreaded.listaClient.size())
                 {
                     //CONFRONTA IL NICKNAME INSERITO CON LA POSIZIONE i NELLA LISTA 
                     //SE LO TROVA IMPOSTA LA VARIABILE A TRUE, ALTRIMENTI AUMENTA IL CONTATORE
-                    if(ServerTestoMultiThreaded.listaSocket.get(i).getNick().equals(line))
+                    if(ServerTestoMultiThreaded.listaClient.get(i).equals(line))
                     {
                         trov = true;
                     } else i++;
@@ -71,27 +71,36 @@ class SocketWorker implements Runnable {
           try{
             line = in.readLine();
             //SCRIVENDO NICKNAME SUL CLIENT, STAMPA TUTTA LA LISTA
-            if(line.equals("Nickname")){
-              for(int i = 0; i < ServerTestoMultiThreaded.listaSocket.size(); i++)
-                {
-                    out.println("Client "+(i+1)+": "+ServerTestoMultiThreaded.listaSocket.get(i).getNick());
+            switch(line){
+                    case "Nickname":
+                    {
+                        for(int i = 0; i < ServerTestoMultiThreaded.listaClient.size(); i++)
+                        {
+                            out.println("Client "+(i+1)+": "+ServerTestoMultiThreaded.listaClient.get(i));
+                        }
+                    }
+                    break;
+                    case "Exit":
+                    {
+                        // ELIMINO IL CLIENT DALLA LISTA
+                        ServerTestoMultiThreaded.listaClient.remove(nick);
+                        try {
+                            out.println("Bye.");
+                            client.close();
+                            System.out.println("connessione con client: " + nick + " terminata!");
+                            return;
+                        } catch (IOException e) { System.out.println("Errore connessione con client: " + nick); }
+                    }
+                    break;
+                    default:
+                    {
+                        //scrivi messaggio ricevuto su terminale
+                        System.out.println(nick + ">> " + line);
+                    }
+                    break;
                 }
-            } else {
-              //Manda lo stesso messaggio appena ricevuto con in aggiunta il "nome" del client
-              out.println("Server-->" + nick + ">> " + line);
-              //scrivi messaggio ricevuto su terminale
-              System.out.println(nick + ">> " + line);
-            }
-          } catch (IOException e) {
-            System.out.println("lettura da socket fallito");
-            System.exit(-1);
-           }
-        }
-        try {
-            client.close();
-            System.out.println("connessione con client: " + nick + " terminata!");
-        } catch (IOException e) {
-            System.out.println("Errore connessione con client: " + nick);
+          } catch (IOException e) { System.out.println("lettura da socket fallito");
+            System.exit(-1); }
         }
     }
     // METODO CHE RITORNA IL NICKNAME
