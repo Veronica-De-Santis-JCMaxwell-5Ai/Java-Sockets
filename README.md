@@ -54,6 +54,10 @@ Visualizzare elenco utenti connessi da Client:
 ```
 <Nickname>
 ```
+Scollegare il client:
+```
+<Exit>
+```
 
 ### Esempio usando stesso computer sia per eseguire Server che multipli Clients
 Da finestra di comando Server esguire il Server:
