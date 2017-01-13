@@ -59,6 +59,7 @@ class SocketWorker implements Runnable {
                     //IMPOSTA LE VARIABILI
                     nick = line;
                     isNick = true;
+                    ServerTestoMultiThreaded.listaClient.add(nick);
                 } else {
                     //ALTRIMENTI STAMPA SUL CLIENT
                     out.println("Nickname gia' esistente, inseriscine un altro");
