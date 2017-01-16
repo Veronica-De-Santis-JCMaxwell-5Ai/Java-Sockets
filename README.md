@@ -78,12 +78,11 @@ java client-Testo localhost 1234
 ## Diventa un collaboratore
 Questa e' la lista delle funzionalità del progetto:
 ```
-1. Comunicazione di più Client con un Server
-2. Richiesta di un nickname al Client
-  2.1 Il nickname DEVE essere univoco
-3. Con il comando <Nickname> il Client può richiedere una lista dei nickname dei Client connessi al Server
+3. Group Chat 
+3.1. Possibilita' di iniziare una o piu' "group chat" fornendo per ogni chat il "Soggetto della discussione"
+3.2. Possibilita' di invitare uno o piu' utenti conessi a entrare nella "goup chat"
+3.3. Possibilita' di uscire dalla "group chat"
 ```
-La prossima modifica consiste nell'inserimento di una Group chat, trovate il nuovo progetto sulla pagina Misael-Micciche-JCMaxwell-5Ai.
  
 ## Licenza
 OpenSource
