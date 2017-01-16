@@ -15,6 +15,7 @@ class SocketWorker implements Runnable {
   // VARIABILE PER CONTROLLARE IL PRIMO STREAM DI DATI
   private boolean isNick = false;
   private String nick = "";
+  private String group = "";
 
     //Constructor: inizializza le variabili
     SocketWorker(Socket client) {
