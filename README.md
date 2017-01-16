@@ -78,10 +78,10 @@ java client-Testo localhost 1234
 ## Diventa un collaboratore
 Questa e' la lista delle funzionalità del progetto:
 ```
-3. Group Chat 
-3.1. Possibilita' di iniziare una o piu' "group chat" fornendo per ogni chat il "Soggetto della discussione"
-3.2. Possibilita' di invitare uno o piu' utenti conessi a entrare nella "goup chat"
-3.3. Possibilita' di uscire dalla "group chat"
+1. Group Chat 
+  1.1. Possibilita' di iniziare una o piu' "group chat" fornendo per ogni chat il "Soggetto della discussione"
+  1.2. Possibilita' di invitare uno o piu' utenti conessi a entrare nella "goup chat"
+  1.3. Possibilita' di uscire dalla "group chat"
 ```
  
 ## Licenza
