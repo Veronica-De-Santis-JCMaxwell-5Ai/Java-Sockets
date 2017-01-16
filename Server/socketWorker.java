@@ -38,34 +38,7 @@ class SocketWorker implements Runnable {
         //FINCHE' IL NICKNAME NON SI RIPETE 
         while(!isNick)
         {
-            try{
-                // LEGGO IL NICKNAME
-                line = in.readLine();
-                boolean trov = false;
-                int i = 0;
-                //FINCHE' NON SCORRO TUTTA LA LISTA O NON TROVO IL NICKNAME
-                while(trov==false && i < ServerTestoMultiThreaded.listaClient.size())
-                {
-                    //CONFRONTA IL NICKNAME INSERITO CON LA POSIZIONE i NELLA LISTA 
-                    //SE LO TROVA IMPOSTA LA VARIABILE A TRUE, ALTRIMENTI AUMENTA IL CONTATORE
-                    if(ServerTestoMultiThreaded.listaClient.get(i).equals(line))
-                    {
-                        trov = true;
-                    } else i++;
-                }
-                //SE NON VIENE TROVATO IL NICKNAME 
-                if(!trov)
-                {
-                    //IMPOSTA LE VARIABILI
-                    nick = line;
-                    isNick = true;
-                    ServerTestoMultiThreaded.listaClient.add(nick);
-                } else {
-                    //ALTRIMENTI STAMPA SUL CLIENT
-                    out.println("Nickname gia' esistente, inseriscine un altro");
-                }
-            } catch(IOException e) { System.out.println("Lettura da socket fallito");
-                                     System.exit(-1); }
+            controlNick(in,out);
         }
         System.out.println("Connesso con: " + nick);
         while(line != null){
@@ -81,6 +54,16 @@ class SocketWorker implements Runnable {
                         }
                     }
                     break;
+                    case "New":
+                    {
+                        out.println("Inserisci il nome del gruppo: ");
+                        // Controllare con una variabile booleana quando viene inserito il nome di un gruppo
+                    }
+                    break;
+                    case "Join":
+                    {
+                        out.println("Inserisci il nome del gruppo al quale vuoi unirti: ");
+                    }
                     case "Exit":
                     {
                         // ELIMINO IL CLIENT DALLA LISTA
@@ -110,4 +93,62 @@ class SocketWorker implements Runnable {
         return nick;
     }
   
+  public void controlNick(BufferedReader in, PrintWriter out)
+    {
+        String line = "";
+        try{
+            // LEGGO IL NICKNAME
+            line = in.readLine();
+            boolean trov = false;
+            int i = 0;
+            //FINCHE' NON SCORRO TUTTA LA LISTA O NON TROVO IL NICKNAME
+            while(trov==false && i < ServerTestoMultiThreaded.listaClient.size())
+            {
+                //CONFRONTA IL NICKNAME INSERITO CON LA POSIZIONE i NELLA LISTA 
+                //SE LO TROVA IMPOSTA LA VARIABILE A TRUE, ALTRIMENTI AUMENTA IL CONTATORE
+                if(ServerTestoMultiThreaded.listaClient.get(i).equals(line))
+                {
+                    trov = true;
+                } else i++;
+            }
+            //SE NON VIENE TROVATO IL NICKNAME 
+            if(!trov)
+            {
+                //IMPOSTA LE VARIABILI
+                nick = line;
+                isNick = true;
+                ServerTestoMultiThreaded.listaClient.add(nick);
+            } else {
+                //ALTRIMENTI STAMPA SUL CLIENT
+                out.println("Nickname gia' esistente, inseriscine un altro");
+            }            
+        } catch(IOException e) { System.out.println("Lettura da socket fallito");
+                                 System.exit(-1); }
+    }
+    
+    public void controlGroup(String group, PrintWriter out)
+    {
+            boolean trov = false;
+            int i = 0;
+            //FINCHE' NON SCORRO TUTTA LA LISTA O NON TROVO IL NICKNAME
+            while(trov==false && i < ServerTestoMultiThreaded.listaGroups.size())
+            {
+                //CONFRONTA IL GRUPPO INSERITO CON LA POSIZIONE i NELLA LISTA 
+                //SE LO TROVA IMPOSTA LA VARIABILE A TRUE, ALTRIMENTI AUMENTA IL CONTATORE
+                if(ServerTestoMultiThreaded.listaGroups.get(i).equals(group))
+                {
+                    trov = true;
+                } else i++;
+            }
+            //SE NON VIENE TROVATO IL NOME DEL GRUPPO IMPOSTO LE VARIABILI
+            if(trov == false)
+            {
+                //IMPOSTA LE VARIABILI
+                groups = group;
+                ServerTestoMultiThreaded.listaGroups.add(groups);
+            } else {
+                //ALTRIMENTI STAMPA SUL CLIENT
+                out.println("Gruppo gia' esistente, inseriscine un altro");
+            }
+    }
 }
