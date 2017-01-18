@@ -15,7 +15,7 @@ import java.util.*;
 public class ServerTestoMultiThreaded {
     //DICHIARAZIONE LISTA CONTENENTE IL NOME DEGLI UTENTI
     static List<String> listaClient = new ArrayList();
-    static List<String> listaGroups = new ArrayList();
+    static List<Group> listaGroup = new ArrayList();
     public static void main(String[] args) {
         //SE LA STRINGA NON E' UNIVOCA 
         if (args.length != 1) {
