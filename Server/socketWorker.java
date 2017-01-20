@@ -16,7 +16,7 @@ class SocketWorker implements Runnable {
   private boolean isNick = false;
   private boolean isGroup = false;
   private String nick = "";
-  private String group = "";
+  private String group = null;
 
     //Constructor: inizializza le variabili
     SocketWorker(Socket client) {
@@ -72,6 +72,23 @@ class SocketWorker implements Runnable {
                         }
                     }
                     break;
+                    case "Remove":
+                    {
+                        boolean trov = false;
+                        int i = 0;
+                        while(trov == false && i<ServerTestoMultiThreaded.listaGroup.size()){
+                            if(ServerTestoMultiThreaded.listaGroup.get(i).getName().equals(group))
+                            {
+                                trov = true;
+                            } else i++;
+                        }
+                        if(trov)
+                        {
+                            ServerTestoMultiThreaded.listaGroup.get(i).deleteClient(client.hashCode());
+                            group = null;
+                            out.println("Client rimosso correttamente dal gruppo");
+                        }
+                    }
                     case "Exit":
                     {
                         // ELIMINO IL CLIENT DALLA LISTA
@@ -86,8 +103,11 @@ class SocketWorker implements Runnable {
                     break;
                     default:
                     {
-                        //scrivi messaggio ricevuto su terminale
-                        System.out.println(nick + ">> " + line);
+                       if(group!=null)
+                        {
+                        } else {
+                            System.out.println(nick + ">> " + line);
+                        }
                     }
                     break;
                 }
