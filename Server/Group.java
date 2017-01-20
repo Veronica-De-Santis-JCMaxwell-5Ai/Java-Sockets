@@ -19,9 +19,14 @@ public class Group {
         numberOfPort.add(hashCode);
     }
     
-    String getName()
+    public String getName()
     {
         return name;
+    }
+    
+    public void deleteClient(int hashCode)
+    {
+        numberOfPort.remove(hashCode);
     }
     
     public void addClient(int hashCode)
