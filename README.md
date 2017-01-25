@@ -50,6 +50,8 @@ dove:
 ```
 **Nota**: posso collegarmi al server con quanti Clients desidero, sia su stesso computer che da terminali su computer diversi, purchè abbiano diversi nickname
 
+### Comandi
+
 Visualizzare elenco utenti connessi da Client:
 ```
 <Nickname>
@@ -58,7 +60,18 @@ Scollegare il client:
 ```
 <Exit>
 ```
-
+Visualizzare elenco dei gruppi presenti sul socket:
+```
+<Groups>
+```
+Creazione di un nuovo gruppo
+```
+<New>
+```
+Aggiunta ad un gruppo già esistente
+```
+<Join>
+```
 ### Esempio usando stesso computer sia per eseguire Server che multipli Clients
 Da finestra di comando Server esguire il Server:
 ```
