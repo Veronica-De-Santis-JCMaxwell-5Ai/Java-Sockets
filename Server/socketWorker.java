@@ -12,11 +12,10 @@ import java.io.*;
  */
 class SocketWorker implements Runnable {
   private Socket client;
-  // VARIABILE PER CONTROLLARE IL PRIMO STREAM DI DATI
-  private boolean isNick = false;
-  private boolean isGroup = false;
   private String nick = "";
   private String group = "";
+  private BufferedReader in = null;
+  private PrintrWriter out = null;
 
     //Constructor: inizializza le variabili
     SocketWorker(Socket client) {
@@ -26,8 +25,6 @@ class SocketWorker implements Runnable {
     // Questa e' la funzione che viene lanciata quando il nuovo "Thread" viene generato
     public void run(){
         
-        BufferedReader in = null;
-        PrintWriter out = null;
         try{
           // connessione con il socket per ricevere (in) e mandare(out) il testo
           in = new BufferedReader(new InputStreamReader(client.getInputStream()));
@@ -38,7 +35,7 @@ class SocketWorker implements Runnable {
         }
         String line = "";
         //FINCHE' IL NICKNAME NON SI RIPETE 
-        controlNick(line,in,out);
+        controlNick();
         System.out.println("Connesso con: " + nick);
         while(line != null){
           try{
@@ -56,19 +53,19 @@ class SocketWorker implements Runnable {
                     case "New":
                     {
                         out.println("Inserisci il nome del gruppo: ");
-                        controlGroup(line,in,out);
+                        controlGroup();
                     }
                     break;
                     case "Join":
                     {
                         out.println("Inserisci il nome del gruppo al quale vuoi unirti: ");
-                        joinAGroup(line,in,out);
+                        joinAGroup();
                     }
                     case "Groups":
                     {
                         for(int i = 0; i < ServerTestoMultiThreaded.listaGroup.size(); i++)
                         {
-                            out.println("Group "+(i+1)+": "+ServerTestoMultiThreaded.listaGroup.get(i).getName());
+                            out.println("Group "+(i+1)+": "+ServerTestoMultiThreaded.listaGroup.get(i));
                         }
                     }
                     break;
@@ -87,7 +84,19 @@ class SocketWorker implements Runnable {
                     default:
                     {
                         //scrivi messaggio ricevuto su terminale
-                        System.out.println(nick + ">> " + line);
+                      if(group.equals(""))
+                          System.out.println(nick + ">> " + line);
+                      else
+                      {
+                          for(int i = 0; i < ServerTestoMultiThreaded.listaSocket.size(); i++)
+                            {
+                                if(ServerTestoMultiThreaded.listaSocket.get(i).getGroup().equals(group))
+                                {
+                                    System.out.println(nick + ">> " + line);
+                                    ServerTestoMultiThreaded.listaSocket.get(i).writeOnClient(line);
+                                }
+                            }
+                        }
                     }
                     break;
                 }
@@ -95,14 +104,11 @@ class SocketWorker implements Runnable {
             System.exit(-1); }
         }
     }
-    // METODO CHE RITORNA IL NICKNAME
-    public String getNick()
-    {
-        return nick;
-    }
   
-  public void controlNick(String line, BufferedReader in, PrintWriter out)
+  public void controlNick()
     {
+        String line = "";
+        boolean isNick = false;
         while(!isNick)
         {
             try{
@@ -136,8 +142,10 @@ class SocketWorker implements Runnable {
         }
     }
     
-    public void controlGroup(String line, BufferedReader in, PrintWriter out)
+    public void controlGroup()
     {
+        boolean isGroup = false;
+        String line = "";
         while(!isGroup)
         {
             try{
@@ -150,7 +158,7 @@ class SocketWorker implements Runnable {
                 {
                     //CONFRONTA IL NICKNAME INSERITO CON LA POSIZIONE i NELLA LISTA 
                     //SE LO TROVA IMPOSTA LA VARIABILE A TRUE, ALTRIMENTI AUMENTA IL CONTATORE
-                    if(ServerTestoMultiThreaded.listaGroup.get(i).getName().equals(line))
+                    if(ServerTestoMultiThreaded.listaGroup.get(i).equals(line))
                     {
                         trov = true;
                     } else i++;
@@ -161,7 +169,7 @@ class SocketWorker implements Runnable {
                     //IMPOSTA LE VARIABILI
                     group = line;
                     isGroup = true;
-                    ServerTestoMultiThreaded.listaGroup.add(new Group(group,client.hashCode()));
+                    ServerTestoMultiThreaded.listaGroup.add(group);
                 } else {
                     //ALTRIMENTI STAMPA SUL CLIENT
                     out.println("Gruppo gia' esistente, inseriscine un altro");
@@ -171,8 +179,9 @@ class SocketWorker implements Runnable {
         }
     }
     
-    public void joinAGroup(String line, BufferedReader in, PrintWriter out)
+    public void joinAGroup()
     {
+        String line = "";
         try{
             line = in.readLine();
         } catch(IOException e){ System.out.println("I|O Error");
@@ -182,7 +191,7 @@ class SocketWorker implements Runnable {
         int index = 0;
         while(trov==false && i<ServerTestoMultiThreaded.listaGroup.size())
         {
-            if(ServerTestoMultiThreaded.listaGroup.get(i).getName().equals(line))
+            if(ServerTestoMultiThreaded.listaGroup.get(i).equals(line))
             {
                 trov = true;
                 index = i;
@@ -190,10 +199,25 @@ class SocketWorker implements Runnable {
         }
         if(trov)
         {
-            ServerTestoMultiThreaded.listaGroup.get(index).addClient(client.hashCode());
+            group = line;
             out.println("Benvenuto nel gruppo!");
         } else {
             out.println("Il gruppo non esiste, prova a crearlo usando il comando <<New>>");
         }
+    }
+  
+    public void writeOnClient(String line)
+    {
+        out.println(group + ">>" + nick + ">> "+line);
+    }
+    
+    public String getGroup()
+    {
+        return group;
+    }
+    
+     public String getNick()
+    {
+        return nick;
     }
 }
