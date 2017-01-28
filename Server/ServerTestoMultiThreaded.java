@@ -15,7 +15,8 @@ import java.util.*;
 public class ServerTestoMultiThreaded {
     //DICHIARAZIONE LISTA CONTENENTE IL NOME DEGLI UTENTI
     static List<String> listaClient = new ArrayList();
-    static List<Group> listaGroup = new ArrayList();
+    static List<String> listaGroup = new ArrayList();
+    static List<SocketWorker> listaSocket = new ArrayList(); 
     public static void main(String[] args) {
         //SE LA STRINGA NON E' UNIVOCA 
         if (args.length != 1) {
@@ -39,6 +40,7 @@ public class ServerTestoMultiThreaded {
                     w = new SocketWorker(server.accept());
                     Thread t = new Thread(w);
                     t.start();
+                    listaSocket.add(w);
                 } catch (IOException e) {
                     System.out.println("Connessione NON riuscita con client: ");
                     System.exit(-1);
