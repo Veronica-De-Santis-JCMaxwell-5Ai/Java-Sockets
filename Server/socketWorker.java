@@ -81,6 +81,15 @@ class SocketWorker implements Runnable {
                         } catch (IOException e) { System.out.println("Errore connessione con client: " + nick); }
                     }
                     break;
+                    case "Help":
+                    {
+                      System.out.prinln("Nickname >> Stampa la lista dei nickname nel client");
+                      System.out.prinln("New >> Crea un nuovo gruppo");
+                      System.out.prinln("Join >> Collegamento a un gruppo già esistente");
+                      System.out.prinln("Groups >> Stampa la lista dei gruppi");
+                      System.out.prinln("Exit >> Uscita");
+                    }
+                    break;
                     default:
                     {
                         //scrivi messaggio ricevuto su terminale
