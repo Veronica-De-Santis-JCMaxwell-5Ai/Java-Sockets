@@ -15,7 +15,7 @@ class SocketWorker implements Runnable {
   private String nick = "";
   private String group = "";
   private BufferedReader in = null;
-  private PrintrWriter out = null;
+  private PrintWriter out = null;
 
     //Constructor: inizializza le variabili
     SocketWorker(Socket client) {
@@ -44,6 +44,7 @@ class SocketWorker implements Runnable {
             switch(line){
                     case "Nickname":
                     {
+                        System.out.println(nick + " ha richiesto la lista dei nickname");
                         for(int i = 0; i < ServerTestoMultiThreaded.listaClient.size(); i++)
                         {
                             out.println("Client "+(i+1)+": "+ServerTestoMultiThreaded.listaClient.get(i));
@@ -52,17 +53,20 @@ class SocketWorker implements Runnable {
                     break;
                     case "New":
                     {
+                        System.out.println(nick + " sta creando un nuovo gruppo");
                         out.println("Inserisci il nome del gruppo: ");
                         controlGroup();
                     }
                     break;
                     case "Join":
                     {
+                        System.out.println(nick + " si sta aggiungendo ad un gruppo già esistente");
                         out.println("Inserisci il nome del gruppo al quale vuoi unirti: ");
                         joinAGroup();
                     }
                     case "Groups":
                     {
+                        System.out.println(nick + " ha richiesto la lista dei gruppi");
                         for(int i = 0; i < ServerTestoMultiThreaded.listaGroup.size(); i++)
                         {
                             out.println("Group "+(i+1)+": "+ServerTestoMultiThreaded.listaGroup.get(i));
@@ -83,11 +87,11 @@ class SocketWorker implements Runnable {
                     break;
                     case "Help":
                     {
-                      System.out.prinln("Nickname >> Stampa la lista dei nickname nel client");
-                      System.out.prinln("New >> Crea un nuovo gruppo");
-                      System.out.prinln("Join >> Collegamento a un gruppo già esistente");
-                      System.out.prinln("Groups >> Stampa la lista dei gruppi");
-                      System.out.prinln("Exit >> Uscita");
+                      System.out.println("Nickname >> Stampa la lista dei nickname nel client");
+                      System.out.println("New >> Crea un nuovo gruppo");
+                      System.out.println("Join >> Collegamento a un gruppo già esistente");
+                      System.out.println("Groups >> Stampa la lista dei gruppi");
+                      System.out.println("Exit >> Uscita");
                     }
                     break;
                     default:
