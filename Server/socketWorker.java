@@ -189,6 +189,7 @@ class SocketWorker implements Runnable {
                 }            
             } catch(IOException e) { System.out.println("Lettura da socket fallito");
                                  System.exit(-1); }
+          System.out.println(nick + " ha creato il gruppo di nome: " + group);
         }
     }
     
@@ -216,6 +217,7 @@ class SocketWorker implements Runnable {
             out.println("Benvenuto nel gruppo!");
         } else {
             out.println("Il gruppo non esiste, prova a crearlo usando il comando <<New>>");
+            out.println("I gruppi esistenti sono i seguenti: ");
         }
     }
   
