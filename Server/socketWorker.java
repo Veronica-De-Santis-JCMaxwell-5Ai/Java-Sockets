@@ -60,10 +60,11 @@ class SocketWorker implements Runnable {
                     break;
                     case "Join":
                     {
-                        System.out.println(nick + " si sta aggiungendo ad un gruppo già esistente");
+                        System.out.println(nick + " si sta aggiungendo ad un gruppo gia' esistente");
                         out.println("Inserisci il nome del gruppo al quale vuoi unirti: ");
                         joinAGroup();
                     }
+                    break;
                     case "Groups":
                     {
                         System.out.println(nick + " ha richiesto la lista dei gruppi");
@@ -89,7 +90,7 @@ class SocketWorker implements Runnable {
                     {
                       System.out.println("Nickname >> Stampa la lista dei nickname nel client");
                       System.out.println("New >> Crea un nuovo gruppo");
-                      System.out.println("Join >> Collegamento a un gruppo già esistente");
+                      System.out.println("Join >> Collegamento a un gruppo gia' esistente");
                       System.out.println("Groups >> Stampa la lista dei gruppi");
                       System.out.println("Exit >> Uscita");
                     }
@@ -105,7 +106,6 @@ class SocketWorker implements Runnable {
                             {
                                 if(ServerTestoMultiThreaded.listaSocket.get(i).getGroup().equals(group))
                                 {
-                                    System.out.println(nick + ">> " + line);
                                     ServerTestoMultiThreaded.listaSocket.get(i).writeOnClient(line);
                                 }
                             }
@@ -223,7 +223,8 @@ class SocketWorker implements Runnable {
   
     public void writeOnClient(String line)
     {
-        out.println(group + ">>" + nick + ">> "+line);
+        out.println(group + ">>" + nick + ">>"+line);
+        System.out.println(group + ">>" + nick+ ">>" + line);
     }
     
     public String getGroup()
