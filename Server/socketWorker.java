@@ -106,7 +106,7 @@ class SocketWorker implements Runnable {
                             {
                                 if(ServerTestoMultiThreaded.listaSocket.get(i).getGroup().equals(group))
                                 {
-                                    ServerTestoMultiThreaded.listaSocket.get(i).writeOnClient(line);
+                                    ServerTestoMultiThreaded.listaSocket.get(i).writeOnClient(line, ServerTestoMultiThreaded.listaSocket.get(i).getNick());
                                 }
                             }
                         }
@@ -183,6 +183,8 @@ class SocketWorker implements Runnable {
                     group = line;
                     isGroup = true;
                     ServerTestoMultiThreaded.listaGroup.add(group);
+                    out.println("Gruppo creato con successo!");
+                    System.out.println(nick + " ha creato il gruppo "+group);
                 } else {
                     //ALTRIMENTI STAMPA SUL CLIENT
                     out.println("Gruppo gia' esistente, inseriscine un altro");
@@ -215,13 +217,14 @@ class SocketWorker implements Runnable {
         {
             group = line;
             out.println("Benvenuto nel gruppo!");
+            System.out.println(nick + " si e' unito al gruppo "+group);
         } else {
             out.println("Il gruppo non esiste, prova a crearlo usando il comando <<New>>");
             out.println("I gruppi esistenti sono i seguenti: ");
         }
     }
   
-    public void writeOnClient(String line)
+    public void writeOnClient(String line, String nick)
     {
         out.println(group + ">>" + nick + ">>"+line);
         System.out.println(group + ">>" + nick+ ">>" + line);
